@@ -2,6 +2,8 @@
 # include<ctime>
 # include<cstring>
 # include<iostream>
+# include"functional.hpp"
+
 int ArgPos(char*str, int argc,char**argv){
     for(int a=1;a<argc;a++){
         if(!strcmp(str,argv[a])){
@@ -23,9 +25,13 @@ int main(int argc,char**argv){
     double margin = 1;      //loss margin
     int arg_idx ;
     std::string version;
+    std::string dataset="fb15k";
+    std::string root_dir="./data";
     if ((arg_idx =ArgPos((char*)"-size",argc,argv))>0) n = atoi(argv[arg_idx+1]);
     if ((arg_idx =ArgPos((char*)"-margin",argc,argv))>0) margin = atoi(argv[arg_idx+1]);
     if ((arg_idx =ArgPos((char*)"-method",argc,argv))>0) method = atoi(argv[arg_idx+1]);
+    if ((arg_idx =ArgPos((char*)"-dataset",argc,argv))>0) dataset = atoi(argv[arg_idx+1]);
+    if ((arg_idx =ArgPos((char*)"-root-dir",argc,argv))>0) dataset = argv[arg_idx+1];
     std::cout<<"size = "<<n<<std::endl;
     std::cout<<"learning rate = "<<learning_rate<<std::endl;
     std::cout<<"margin = "<<margin<<std::endl;
@@ -35,4 +41,8 @@ int main(int argc,char**argv){
         version = "unif";
     }
     std::cout<<"method = "<<version<<std::endl;
+    Dataset data(root_dir,dataset,"train");
+    data.build();
+    return 0;
 }
+
