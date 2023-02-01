@@ -96,7 +96,7 @@ void Dataset::build(){
         std::vector<int> tmp_v;tmp_v.push_back(head);tmp_v.push_back(rel);tmp_v.push_back(tail);
         this->all_data.push_back(tmp_v);
     }
-    std::cout<<"The dataset number is "<<all_data.size()<<std::endl;
+    std::cout<<"The "<<data_tag<<" dataset number is "<<all_data.size()<<std::endl;
     ifs.close();
 }
 
